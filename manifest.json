@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Darken",
+  "version": "1.0.0",
+  "description": "Darken YouTube videos you've already watched.",
+  "author": "Peter Han",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "css": ["styles.css"]
+    }
+  ]
+}

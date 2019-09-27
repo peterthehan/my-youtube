@@ -1,0 +1,11 @@
+ytd-thumbnail-overlay-resume-playback-renderer {
+  height: 100% !important;
+  opacity: 0.9 !important;
+  background-color: black !important;
+  display: flex !important;
+  align-items: flex-end !important;
+}
+
+#progress.ytd-thumbnail-overlay-resume-playback-renderer {
+  height: 4px !important;
+}
