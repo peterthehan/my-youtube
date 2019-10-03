@@ -6,7 +6,7 @@ Darken YouTube videos you've already watched.
 
 <div align="center">
   <p>
-    <img src="https://raw.githubusercontent.com/peterthehan/copy-tabs/master/assets/demo.png" title="Darken" />
+    <img src="https://raw.githubusercontent.com/peterthehan/darken/master/assets/demo.png" title="Darken" />
   </p>
 </div>
 
