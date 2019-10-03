@@ -1,12 +1,14 @@
-# Darken
+<div>
+  <img src="https://raw.githubusercontent.com/peterthehan/darken/master/assets/darken_128.png" title="Darken" />
+</div>
 
-# About
+# Darken
 
 Darken YouTube videos you've already watched.
 
 <div align="center">
   <p>
-    <img src="https://raw.githubusercontent.com/peterthehan/darken/master/assets/demo.png" title="Darken" />
+    <img src="https://raw.githubusercontent.com/peterthehan/darken/master/assets/demo.png" title="Demo" />
   </p>
 </div>
 
