@@ -20,9 +20,10 @@ function getVideos() {
   return videos.filter(hasOneThumbnail);
 }
 
-const substringBlacklistRegExp = RegExp(SUBSTRING_BLACKLIST.join("|"), "i");
 function hasBlacklistedSubstring(video) {
-  return substringBlacklistRegExp.test(video.innerText);
+  return SUBSTRING_BLACKLIST.some((substring) =>
+    video.innerText.includes(substring)
+  );
 }
 
 function hasProgressBar(video) {
