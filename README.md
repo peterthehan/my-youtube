@@ -4,13 +4,19 @@
 
 # Darken
 
-Darken YouTube videos you've already watched.
+Darken YouTube videos you've started, already watched, or don't care to see.
 
 <div align="center">
   <p>
     <img src="https://raw.githubusercontent.com/peterthehan/darken/master/assets/demo.png" title="Demo" />
   </p>
 </div>
+
+# Description
+
+The extension scrapes the page for each video's progress bar and text data to filter on and apply the darken styling.
+
+Open `content.js` to modify the substring blacklist to your liking.
 
 # Installation
 

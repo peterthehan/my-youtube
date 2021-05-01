@@ -1,4 +1,4 @@
-const blacklistedTitles = [
+const SUBSTRING_BLACKLIST = [
   "#short",
   "cm",
   "premiere",
@@ -6,6 +6,7 @@ const blacklistedTitles = [
   "teaser",
   "trailer",
 ];
+const DEBOUNCE_DELAY = 2000;
 
 function hasOneThumbnail(video) {
   return video.getElementsByTagName("ytd-thumbnail").length === 1;
@@ -19,9 +20,9 @@ function getVideos() {
   return videos.filter(hasOneThumbnail);
 }
 
-const blacklistedTitlesRegExp = RegExp(blacklistedTitles.join("|"), "i");
-function hasBlacklistedTitle(video) {
-  return blacklistedTitlesRegExp.test(video.innerText);
+const substringBlacklistRegExp = RegExp(SUBSTRING_BLACKLIST.join("|"), "i");
+function hasBlacklistedSubstring(video) {
+  return substringBlacklistRegExp.test(video.innerText);
 }
 
 function hasProgressBar(video) {
@@ -48,7 +49,7 @@ function applyDarken() {
   console.log(`Loaded ${videos.length} video(s)`);
 
   const filteredVideos = videos.filter(
-    (video) => hasBlacklistedTitle(video) || hasProgressBar(video)
+    (video) => hasBlacklistedSubstring(video) || hasProgressBar(video)
   );
 
   console.log(
@@ -66,7 +67,7 @@ function applyDarken() {
 let timeout = null;
 function debouncer() {
   clearTimeout(timeout);
-  timeout = setTimeout(applyDarken, 2000);
+  timeout = setTimeout(applyDarken, DEBOUNCE_DELAY);
 }
 
 const targetNode = document.body;
