@@ -8,16 +8,18 @@ const SUBSTRING_BLACKLIST = [
 ];
 const DEBOUNCE_DELAY = 2000;
 
-function hasOneThumbnail(video) {
-  return video.getElementsByTagName("ytd-thumbnail").length === 1;
+function markAsAlreadySeen(thumbnail) {
+  thumbnail.classList.add("already-seen");
 }
 
 function getVideos() {
-  const videos = [
-    ...document.querySelectorAll("div[id=dismissible]:not(.already-seen)"),
+  const thumbnails = [
+    ...document.querySelectorAll("ytd-thumbnail:not(.already-seen)"),
   ];
 
-  return videos.filter(hasOneThumbnail);
+  thumbnails.forEach(markAsAlreadySeen);
+
+  return thumbnails.map((thumbnails) => thumbnails.parentElement);
 }
 
 function hasBlacklistedSubstring(video) {
@@ -31,10 +33,6 @@ function hasProgressBar(video) {
     video.getElementsByTagName("ytd-thumbnail-overlay-resume-playback-renderer")
       .length
   );
-}
-
-function markAsAlreadySeen(video) {
-  video.classList.add("already-seen");
 }
 
 function getThumbnail(video) {
@@ -57,8 +55,6 @@ function applyDarken() {
     `Found ${filteredVideos.length} video(s) to darken`,
     filteredVideos.map((video) => ({ title: video.innerText, video }))
   );
-
-  videos.forEach(markAsAlreadySeen);
 
   filteredVideos
     .map(getThumbnail)
