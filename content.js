@@ -1,4 +1,11 @@
-const blacklistedTitles = ["#short", "cm", "pv", "teaser", "trailer"];
+const blacklistedTitles = [
+  "#short",
+  "cm",
+  "premiere",
+  "pv",
+  "teaser",
+  "trailer",
+];
 
 function hasOneThumbnail(video) {
   return video.getElementsByTagName("ytd-thumbnail").length === 1;
