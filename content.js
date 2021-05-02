@@ -23,9 +23,8 @@ function getVideos() {
 }
 
 function hasBlacklistedSubstring(video) {
-  return SUBSTRING_BLACKLIST.some((substring) =>
-    video.innerText.includes(substring)
-  );
+  const innerText = video.innerText.toLowerCase();
+  return SUBSTRING_BLACKLIST.some((substring) => innerText.includes(substring));
 }
 
 function hasProgressBar(video) {
