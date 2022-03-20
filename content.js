@@ -2,6 +2,7 @@ const SUBSTRING_BLACKLIST = [
   "#short",
   "cm",
   "premiere",
+  "preview",
   "pv",
   "teaser",
   "trailer",
