@@ -1,5 +1,5 @@
+const DARKEN_SHORTS = true;
 const SUBSTRING_BLACKLIST = [
-  "#short",
   "cm",
   "premiere",
   "preview",
@@ -35,6 +35,10 @@ function hasProgressBar(video) {
   );
 }
 
+function isShorts(video) {
+  return video.innerHTML.includes('href="/shorts/');
+}
+
 function getThumbnail(video) {
   return video.getElementsByTagName("img")[0];
 }
@@ -45,10 +49,16 @@ function applyDarken() {
     return;
   }
 
-  console.log(`Loaded ${videos.length} video(s)`);
+  console.log(
+    `Loaded ${videos.length} video(s)`,
+    videos.map((video) => ({ title: video.innerText, video }))
+  );
 
   const filteredVideos = videos.filter(
-    (video) => hasBlacklistedSubstring(video) || hasProgressBar(video)
+    (video) =>
+      hasBlacklistedSubstring(video) ||
+      hasProgressBar(video) ||
+      (DARKEN_SHORTS && isShorts(video))
   );
 
   console.log(
