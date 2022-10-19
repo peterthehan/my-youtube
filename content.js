@@ -109,7 +109,6 @@ function debouncer(fns) {
   timeout = setTimeout(() => fns.forEach((fn) => fn()), DEBOUNCE_DELAY);
 }
 
-const targetNode = document.body;
 const config = { childList: true, subtree: true };
 const observer = new MutationObserver(() => debouncer([applyDarken, moveMenu]));
-observer.observe(targetNode, config);
+observer.observe(document.body, config);
