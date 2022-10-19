@@ -11,9 +11,9 @@
   "author": "Peter Han",
   "content_scripts": [
     {
-      "js": ["content.js"],
       "css": ["styles.css"],
-      "matches": ["https://www.youtube.com/*"]
+      "js": ["content.js"],
+      "matches": ["https://*.youtube.com/*"]
     }
   ]
 }

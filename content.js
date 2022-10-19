@@ -1,3 +1,4 @@
+const MOVE_MENU = true;
 const DARKEN_SHORTS = true;
 const SUBSTRING_BLACKLIST = [
   "cm",
@@ -7,10 +8,10 @@ const SUBSTRING_BLACKLIST = [
   "teaser",
   "trailer",
 ];
-const DEBOUNCE_DELAY = 2000;
+const DEBOUNCE_DELAY = 1500;
 
-function markAsAlreadySeen(thumbnail) {
-  thumbnail.classList.add("already-seen");
+function markAsAlreadySeen(element) {
+  element.classList.add("already-seen");
 }
 
 function getVideos() {
@@ -49,10 +50,10 @@ function applyDarken() {
     return;
   }
 
-  console.log(
-    `Loaded ${videos.length} video(s)`,
-    videos.map((video) => ({ title: video.innerText, video }))
-  );
+  // console.log(
+  //   `Loaded ${videos.length} video(s)`,
+  //   videos.map((video) => ({ title: video.innerText, video }))
+  // );
 
   const filteredVideos = videos.filter(
     (video) =>
@@ -61,23 +62,54 @@ function applyDarken() {
       (DARKEN_SHORTS && isShorts(video))
   );
 
-  console.log(
-    `Found ${filteredVideos.length} video(s) to darken`,
-    filteredVideos.map((video) => ({ title: video.innerText, video }))
-  );
+  // console.log(
+  //   `Found ${filteredVideos.length} video(s) to darken`,
+  //   filteredVideos.map((video) => ({ title: video.innerText, video }))
+  // );
 
   filteredVideos
     .map(getThumbnail)
     .forEach((thumbnail) => thumbnail.classList.add("darken"));
 }
 
+function moveMenu() {
+  if (!MOVE_MENU) {
+    return;
+  }
+
+  const menu = document.querySelector(
+    "ytd-menu-renderer.ytd-watch-metadata:not(.already-seen)"
+  );
+  if (!menu) {
+    return;
+  }
+
+  const aboveTheFold = document.querySelector(
+    "div#above-the-fold.ytd-watch-metadata"
+  );
+  if (!aboveTheFold) {
+    return;
+  }
+
+  const actions = document.querySelector("div#actions.ytd-watch-metadata");
+  if (!actions) {
+    return;
+  }
+
+  menu.style["justify-content"] = "flex-start";
+  aboveTheFold.prepend(actions);
+
+  markAsAlreadySeen(menu);
+  // console.log("Moved menu");
+}
+
 let timeout = null;
-function debouncer() {
+function debouncer(fns) {
   clearTimeout(timeout);
-  timeout = setTimeout(applyDarken, DEBOUNCE_DELAY);
+  timeout = setTimeout(() => fns.forEach((fn) => fn()), DEBOUNCE_DELAY);
 }
 
 const targetNode = document.body;
 const config = { childList: true, subtree: true };
-const observer = new MutationObserver(debouncer);
+const observer = new MutationObserver(() => debouncer([applyDarken, moveMenu]));
 observer.observe(targetNode, config);
