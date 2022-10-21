@@ -24,7 +24,7 @@ Open [content.js](content.js) to modify the config to your liking.
 
 # Installation
 
-1. Download and extract [MyYoutube](https://github.com/peterthehan/my-youtube/archive/refs/heads/main.zip).
+1. Download and extract [MyYouTube](https://github.com/peterthehan/my-youtube/archive/refs/heads/main.zip).
 2. Navigate to `chrome://extensions` from your address bar.
 3. Enable `Developer mode` located in the top-right corner.
 4. Drag-and-drop the extracted folder into the Extensions page.
