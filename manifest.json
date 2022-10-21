@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Darken",
+  "name": "MyYouTube",
   "version": "0.1.0",
-  "description": "Darken YouTube videos you've already watched.",
+  "description": "YouTube, for me.",
   "icons": {
-    "16": "assets/darken_16.png",
-    "48": "assets/darken_48.png",
-    "128": "assets/darken_128.png"
+    "16": "assets/logo_16.png",
+    "48": "assets/logo_48.png",
+    "128": "assets/logo_128.png"
   },
   "author": "Peter Han",
   "content_scripts": [
