@@ -1,28 +1,32 @@
-<div>
-  <img src="https://raw.githubusercontent.com/peterthehan/darken/master/assets/darken_128.png" title="Darken" />
-</div>
+![banner logo](assets/logo_128.png)
 
-# Darken
+# MyYouTube
 
-Darken YouTube videos you've started, already watched, or don't care to see.
-
-<div align="center">
-  <p>
-    <img src="https://raw.githubusercontent.com/peterthehan/darken/master/assets/demo.png" title="Demo" />
-  </p>
-</div>
+YouTube, for me.
 
 # Description
 
-The extension scrapes the page for each video's progress bar and text data to filter on and apply the darken styling.
+The extension scrapes `https://*.youtube.com/*` to apply QoL styles to my preference. This includes:
 
-Open `content.js` to modify the substring blacklist to your liking.
+1. Applies `darken` style on video thumbnails depending on if the video:
+
+   - Is a YouTube Shorts
+   - Has already been watched (has progress bar)
+   - Contains text that has been blacklisted
+
+![darken demo](assets/demo_1.jpg)
+
+2. Moves the menu bar above the video title.
+
+![menu demo](assets/demo_2.jpg)
+
+Open [content.js](content.js) to modify the config to your liking.
 
 # Installation
 
-1. Download and extract [Darken](https://github.com/peterthehan/darken/archive/refs/heads/main.zip).
+1. Download and extract [MyYouTube](https://github.com/peterthehan/my-youtube/archive/refs/heads/main.zip).
 2. Navigate to `chrome://extensions` from your address bar.
 3. Enable `Developer mode` located in the top-right corner.
 4. Drag-and-drop the extracted folder into the Extensions page.
 
-Happy Darkening! 🎉
+Happy YouTubing! 🎉
