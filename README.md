@@ -10,9 +10,9 @@ The extension scrapes `https://*.youtube.com/*` to apply QoL styles to my prefer
 
 1. Applies `darken` style on video thumbnails depending on if the video:
 
-- Is a YouTube Shorts
-- Has already been watched (has progress bar)
-- Contains text that has been blacklisted
+   - Is a YouTube Shorts
+   - Has already been watched (has progress bar)
+   - Contains text that has been blacklisted
 
 ![darken demo](assets/demo_1.jpg)
 
@@ -20,7 +20,7 @@ The extension scrapes `https://*.youtube.com/*` to apply QoL styles to my prefer
 
 ![menu demo](assets/demo_2.jpg)
 
-Open [content.js]() to modify the config to your liking.
+Open [content.js](content.js) to modify the config to your liking.
 
 # Installation
 
