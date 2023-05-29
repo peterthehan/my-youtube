@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        width: 300px;
+      }
+      div.textarea {
+        margin-top: 10px;
+      }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <div class="checkbox">
+      <label for="actionMenuToggle">
+        <input type="checkbox" id="actionMenuToggle" />
+        Move action menu
+      </label>
+    </div>
+    <div class="checkbox">
+      <label for="shortsToggle">
+        <input type="checkbox" id="shortsToggle" />
+        Darken YouTube Shorts
+      </label>
+    </div>
+    <div class="textarea">
+      <label for="blacklist">YouTube text blacklist</label>
+      <textarea id="blacklist" rows="10" cols="30"></textarea>
+    </div>
+    <div class="button">
+      <button id="saveButton">Save</button>
+    </div>
+  </body>
+</html>

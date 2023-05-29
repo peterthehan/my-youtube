@@ -13,7 +13,12 @@
     {
       "css": ["styles.css"],
       "js": ["content.js"],
-      "matches": ["https://*.youtube.com/*"]
+      "matches": ["https://*.youtube.com/*"],
+      "exclude_globs": ["https://www.youtube.com/playlist*"]
     }
-  ]
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage"]
 }

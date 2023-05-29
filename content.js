@@ -1,13 +1,3 @@
-const MOVE_MENU = true;
-const DARKEN_SHORTS = true;
-const SUBSTRING_BLACKLIST = [
-  "cm",
-  "premiere",
-  "preview",
-  "pv",
-  "teaser",
-  "trailer",
-];
 const DEBOUNCE_DELAY = 1500;
 
 function markAsAlreadySeen(element) {
@@ -24,9 +14,9 @@ function getVideos() {
   return thumbnails.map((thumbnails) => thumbnails.parentElement);
 }
 
-function hasBlacklistedSubstring(video) {
+function hasBlacklistedSubstring(video, blacklist) {
   const innerText = video.innerText.toLowerCase();
-  return SUBSTRING_BLACKLIST.some((substring) => innerText.includes(substring));
+  return blacklist.some((substring) => innerText.includes(substring));
 }
 
 function hasProgressBar(video) {
@@ -44,7 +34,7 @@ function getThumbnail(video) {
   return video.getElementsByTagName("img")[0];
 }
 
-function applyDarken() {
+function applyDarken({ blacklist, shortsToggle }) {
   const videos = getVideos();
   if (videos.length === 0) {
     return;
@@ -57,9 +47,9 @@ function applyDarken() {
 
   const filteredVideos = videos.filter(
     (video) =>
-      hasBlacklistedSubstring(video) ||
+      hasBlacklistedSubstring(video, blacklist) ||
       hasProgressBar(video) ||
-      (DARKEN_SHORTS && isShorts(video))
+      (shortsToggle && isShorts(video))
   );
 
   // console.log(
@@ -72,8 +62,8 @@ function applyDarken() {
     .forEach((thumbnail) => thumbnail.classList.add("darken"));
 }
 
-function moveMenu() {
-  if (!MOVE_MENU) {
+function moveMenu({ actionMenuToggle }) {
+  if (!actionMenuToggle) {
     return;
   }
 
@@ -110,5 +100,16 @@ function debouncer(fns) {
 }
 
 const config = { childList: true, subtree: true };
-const observer = new MutationObserver(() => debouncer([applyDarken, moveMenu]));
-observer.observe(document.body, config);
+chrome.storage.sync.get("options", function ({ options }) {
+  const actionMenuToggle = options?.actionMenuToggle ?? false;
+  const shortsToggle = options?.shortsToggle ?? false;
+  const blacklist = options?.blacklist ?? [];
+
+  const observer = new MutationObserver(() =>
+    debouncer([
+      () => applyDarken({ blacklist, shortsToggle }),
+      () => moveMenu({ actionMenuToggle }),
+    ])
+  );
+  observer.observe(document.body, config);
+});
